@@ -1,0 +1,68 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+
+
+<div class="container">
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+          <h1 class="my-4">Les derniers
+            <small>Posts</small>
+          </h1>
+
+
+          {% for post in posts %}
+
+
+          <!-- Blog Post -->
+          <div class="card mb-4">
+            <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
+            <div class="card-body">
+              <h2 class="card-title">{{ post.titre }}</h2>
+            <p class="is-small">{{ post.contenu|length > 255 ? post.contenu|slice(0, 255) ~ '...' : post.contenu  }}</p>
+              <a href="post/{{ post.slug }}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+              Posted on {{ post.published | date('H:i') }}
+              <a href="#">{{ post.Auteur}}</a>
+            </div>
+          </div>
+
+          {% endfor %}
+
+
+          {# display navigation #}
+          <div class="navigation">
+              {{ knp_pagination_render(posts) }}
+          </div>
+
+
+          <!-- Pagination 
+          <ul class="pagination justify-content-center mb-4">
+            <li class="page-item">
+              <a class="page-link" href="#">&larr; Older</a>
+            </li>
+            <li class="page-item disabled">
+              <a class="page-link" href="#">Newer &rarr;</a>
+            </li>
+          </ul>-->
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+{% endblock %}

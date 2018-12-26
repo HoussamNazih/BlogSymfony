@@ -1,0 +1,26 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<article>
+    <h2>{{ post.titre }}</h2>
+    <div class="metadata">Ecrit le {{ post.published | date('d/m/Y') }} à {{ post.published | date('H:i') }} dans la catégorie blabla</div>
+    <div class="content">
+        
+        <p>{{ post.contenu | raw}}</p>
+       
+    </div>
+ <button type="button" class="btn btn-success" OnClick="/blog/{id}/edit">Success</button>
+<ul >
+                        <li >
+                          <a  href="/blog/{id}/edit">mod <span class="sr-only">(current)</span></a>
+                        </li>
+                        
+                        
+                      </ul> 
+    
+</article>
+
+
+
+{% endblock %}

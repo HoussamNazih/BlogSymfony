@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+<section class="articles"></section>
+ 
+{% for post in posts %}
+
+        <article>
+            <h2>{{ post.titre }}</h2>
+            
+            <div class="content">
+            <p>{{ post.contenu | raw }}</p>
+            <div class="metadata">Ecrit le {{ post.published | date('d/m/Y') }} à {{ post.published | date('H:i') }} </div>
+            <a href="{{path('blog_show' , {'id': post.id }) }}" class="btn btn-primary">Lire la suite</a>
+            </div>
+        </article>
+        
+
+{% endfor %}
+<div class="navigation text-center">
+           {{ knp_pagination_render(posts) }}
+         </div>
+
+{% endblock %}
