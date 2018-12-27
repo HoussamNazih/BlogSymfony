@@ -39,13 +39,6 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
-# Doctrine Configuration
-doctrine:
-    dbal:
-        driver: pdo_sqlite
-        path: '%kernel.project_dir%/app/sqlite.db'
-        charset: UTF8
-        path: '%database_path%'
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
