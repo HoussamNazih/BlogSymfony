@@ -40,8 +40,6 @@ twig:
     strict_variables: '%kernel.debug%'
 
 
-
-
 # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'
