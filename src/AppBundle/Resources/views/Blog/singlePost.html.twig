@@ -40,12 +40,10 @@
           <hr>
           
 
-          {% if {{ post.Auteur}} == $this->container->get('security.token_storage')->getToken()->getUser() %}
 
           <a href="{{path('edit_post' , {'id': post.id }) }}" class="btn btn-primary">Modifier</a>
           <a href="{{path('delete_post' , {'id': post.id }) }}" class="btn btn-primary">Supprimer</a>
 
-          {% endif %}
 
 
           <hr>
