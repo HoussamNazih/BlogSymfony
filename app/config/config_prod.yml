@@ -38,4 +38,5 @@ monolog:
             process_psr_3_messages: false
 
 fos_ck_editor:
+    base_path: "ckeditor"
     js_path:   "ckeditor.js"
