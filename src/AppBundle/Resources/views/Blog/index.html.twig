@@ -3,7 +3,7 @@
 {% block body %}
 
 
-
+<br>
 
 <div class="container">
 
@@ -12,8 +12,27 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-          <h1 class="my-4">Les derniers Posts
-          </h1>
+
+  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+            <div class="alert alert-success" role="alert">
+            Vous etes connecter en tant que : <u>{{ user|upper }} </u> <br>
+   <a href="/newPost" class="alert-link">  Cliquez ici pour Ajouter un Post </a>
+</div>
+
+
+
+
+            {% else %}
+
+            <div class="alert alert-danger" role="alert">
+   <a href="#" class="alert-link"> Connectez vous </a> afin d'ajouter un Post
+           </div>
+
+            {% endif %}
+
+
+<br>
 
 
           {% for post in posts %}

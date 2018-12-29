@@ -20,6 +20,7 @@ class BlogController extends Controller
     public function indexAction(Request $request)
     {
 
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
         $repo = $this->getDoctrine()->getRepository(Post::class);
         $posts = $repo->findAll();
@@ -35,7 +36,8 @@ class BlogController extends Controller
        
         
         return $this->render('@App/Blog/index.html.twig',[
-            'posts' => $results
+            'posts' => $results,
+            'user' =>  $user
             ]);
 
             
@@ -52,10 +54,8 @@ class BlogController extends Controller
 
 
         $repo = $this->getDoctrine()->getRepository(Post::class);
-        $user = new User () ;
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        dump($user);
-        $posts = $repo->findBy( ['auteur' =>  'houssam' ] );
+        $posts = $repo->findBy( ['auteur' =>  strval ($user) ] );
         $paginator = $this->get('knp_paginator');
         $results = $paginator->paginate
         (
