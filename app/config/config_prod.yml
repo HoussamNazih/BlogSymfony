@@ -39,4 +39,4 @@ monolog:
 
 fos_ck_editor:
     base_path: "ckeditor"
-    js_path:   "ckeditor.js"
+    js_path:   "ckeditor/ckeditor.js"
