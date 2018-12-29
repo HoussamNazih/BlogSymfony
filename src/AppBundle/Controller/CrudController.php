@@ -76,6 +76,8 @@ class CrudController extends Controller
 
              if($form->isSubmitted() && $form ->isValid()){
 
+                   
+
                    $manager->persist($post);
                    $manager->flush();
 

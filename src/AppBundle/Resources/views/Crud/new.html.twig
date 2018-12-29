@@ -6,26 +6,41 @@
 {% block title %}Ajouter un post{% endblock %}
 
 {% block body %}
+ <br>
+ <br>
+<div class="container">
+        <div class="col-md-10   col-md-offset-4">
+            
+                   {{ form_start(formPost) }}
+                   {{ form_widget(formPost) }}
 
-<div class="col-xs-1" align="center">
-
-<h1>Ajout d'un post</h1>
-{{ form_start(formPost) }}
-
-{{ form_widget(formPost) }}
-
-<button type="submit" class="btn btn-success">
-
-    Ajouter
- 
- </button>
+            
+            <div class="form-group">
+                <button class="btn btn-primary" id="submit">Submit new post</button>
+            </div>
+        </div>
+</div>
 
 {{ form_end(formPost) }}
 
 
- </div>
+<style>
+    #row_style {
+        margin-top: 30px;
+    }
+
+    #submit {
+        display: block;
+        margin: auto;
+    }
+</style>
+
+<!-- you need to include the shieldui css and js assets in order for the charts to work -->
+<link rel="stylesheet" type="text/css" href="https://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+<script type="text/javascript" src="https://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+
+
+
 
 {% endblock %}
-
-
 

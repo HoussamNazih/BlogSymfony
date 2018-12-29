@@ -17,7 +17,7 @@ class PostType extends AbstractType
     {
         $builder
             ->add('Titre')
-            ->add('image', FileType::class, array('label'=>'inserer une image'))
+            ->add('image', FileType::class , array('data_class' => null))
             ->add('contenu', CKEditorType::class, array(
                 'config' => array(
                     'uiColor' => '#ffffff',

@@ -1,17 +1,47 @@
 {% extends 'base.html.twig' %}
+
+
 {% form_theme formPost 'bootstrap_4_layout.html.twig' %}
 
-{% block title %}Edit d'un post{% endblock %}
+{% block title %}Ajouter un post{% endblock %}
 
 {% block body %}
-<h1>Edit d'un post</h1>
-{{ form_start(formPost) }}
+ <br>
+ <br>
+<div class="container">
+        <div class="col-md-10   col-md-offset-4">
+            
+                   {{ form_start(formPost) }}
+                   {{ form_widget(formPost) }}
 
-{{ form_widget(formPost) }}
-<button type="submit" class="btn btn-success">
+            
+            <div class="form-group">
+                <button class="btn btn-primary" id="submit">Submit changes</button>
+            </div>
+        </div>
+</div>
 
-    Enregistrer les modifications
- 
- </button>
 {{ form_end(formPost) }}
+
+
+<style>
+    #row_style {
+        margin-top: 30px;
+    }
+
+    #submit {
+        display: block;
+        margin: auto;
+    }
+</style>
+
+<!-- you need to include the shieldui css and js assets in order for the charts to work -->
+<link rel="stylesheet" type="text/css" href="https://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+<script type="text/javascript" src="https://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+
+
+
+
 {% endblock %}
+
+
