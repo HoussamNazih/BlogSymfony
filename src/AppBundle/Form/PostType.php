@@ -21,8 +21,6 @@ class PostType extends AbstractType
             ->add('contenu', CKEditorType::class, array(
                 'config' => array(
                     'uiColor' => '#ffffff',
-                    'base_path' => 'ckeditor',
-                    'js_path'   => 'ckeditor/ckeditor.js'
                     //...
                 ),
             ))
