@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	{% if posts is empty %}
+
+	<p> vous n'avez ecris any post </p>
+
+    {% else %}
+
+	<table>
+		<tr>
+			<th>Titre</th>
+			<th>Actions</th>
+		</tr>
+	{% for post in posts %}
+		<tr>
+			<td>
+				{{post.titre}}
+			</td>
+			<td>
+				<a href="/blog/{{ post.id }}" class="btn btn-info">View</a>
+				<a href="/edit/{{ post.id }}" class="btn btn-primary">Edit</a>
+				<a href="/delete/{{ post.id }}" class="btn btn-danger">Delete</a>
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+
+	{% endif %}
+
+{% endblock %}

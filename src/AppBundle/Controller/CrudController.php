@@ -32,6 +32,18 @@ class CrudController extends Controller
 
              if($form->isSubmitted() && $form ->isValid()){
 
+
+                  //Image
+                  $file = $post->getImage();
+                  $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                  $file->move(
+                      $this->getParameter('image_directory'),$fileName
+                  );
+
+                  $post->setImage($fileName);
+
+
                    //$manager = $this->getDoctrine()->getManager();
                    $post -> setPublished(new \DateTime());
                    $slug = strtolower(trim(preg_replace('/[\s-]+/', '_', preg_replace('/[^A-Za-z0-9-]+/', '_', preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $post -> getTitre()))))), '_'));

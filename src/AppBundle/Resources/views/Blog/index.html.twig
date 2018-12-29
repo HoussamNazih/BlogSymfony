@@ -12,8 +12,7 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-          <h1 class="my-4">Les derniers
-            <small>Posts</small>
+          <h1 class="my-4">Les derniers Posts
           </h1>
 
 
@@ -22,10 +21,10 @@
 
           <!-- Blog Post -->
           <div class="card mb-4">
-            <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
+          <img class="img-fluid rounded" src="{{asset('uploads/images/' ~ post.image )}}">
             <div class="card-body">
               <h2 class="card-title">{{ post.titre }}</h2>
-            <p class="is-small">{{ post.contenu|length > 255 ? post.contenu|slice(0, 255) ~ '...' : post.contenu  }}</p>
+            <p class="is-small">{{ post.contenu|striptags|convert_encoding('UTF-8', 'HTML-ENTITIES')|length > 255 ? post.contenu|striptags|convert_encoding('UTF-8', 'HTML-ENTITIES')|slice(0, 255) ~ '...' : post.contenu|striptags|convert_encoding('UTF-8', 'HTML-ENTITIES')  }}</p>
               <a href="post/{{ post.slug }}" class="btn btn-primary">Read More &rarr;</a>
             </div>
             <div class="card-footer text-muted">

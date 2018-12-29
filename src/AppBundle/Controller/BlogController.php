@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\User;
 use AppBundle\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,6 +40,44 @@ class BlogController extends Controller
 
             
     }
+
+
+
+
+/**
+     * @Route("/display" , name="View_All_My_Posts")
+     */
+    public function displayAction(Request $request)
+    {
+
+
+        $repo = $this->getDoctrine()->getRepository(Post::class);
+        $user = new User () ;
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        dump($user);
+        $posts = $repo->findBy( ['auteur' =>  'houssam' ] );
+        $paginator = $this->get('knp_paginator');
+        $results = $paginator->paginate
+        (
+              $posts,
+              $request->query->getInt('page', 1) ,
+              $request->query->getInt('limit', 5) 
+              );
+
+       
+        
+        return $this->render('@App/Blog/display.html.twig',[
+            'posts' => $results
+            ]);
+
+            
+    }
+
+
+
+
+
+
 
 
 

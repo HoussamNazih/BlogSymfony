@@ -87,6 +87,18 @@ class Post
     private $auteur;
 
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255)
+     * @Assert\Image()
+     * @Assert\NotBlank(message="uploade an image plz")
+
+     * 
+     */
+    private $image;
+
+
 
 /**
      * Set auteur
@@ -114,6 +126,18 @@ class Post
     }
 
 
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }  
 
     
     /**
