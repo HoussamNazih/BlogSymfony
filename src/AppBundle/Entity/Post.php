@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Post
@@ -219,12 +221,21 @@ class Post
      *
      * @return Post
      */
+    public function getPost($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+
     public function setPublished($published)
     {
         $this->published = $published;
 
         return $this;
     }
+
 
     /**
      * Get published
@@ -235,5 +246,11 @@ class Post
     {
         return $this->published;
     }
+
+
+    public function __toString()
+{
+    return $this->getTitre();
 }
 
+}

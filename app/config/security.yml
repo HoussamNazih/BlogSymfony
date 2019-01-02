@@ -24,6 +24,10 @@ security:
             anonymous:    true
 
     access_control:
+
+        - { path: ^/delete, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/edit, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/newPost, role: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }

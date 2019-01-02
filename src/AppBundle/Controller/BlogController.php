@@ -6,8 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Comment;
+
 use AppBundle\Entity\User;
 use AppBundle\Repository\PostRepository;
+use AppBundle\Repository\CommentRepository;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -86,11 +90,20 @@ class BlogController extends Controller
      */
     public function PostAction($id)
     {
+
+
         $repo = $this->getDoctrine()->getRepository(Post::class);
         $post = $repo->find($id);
+
+
+        if (!$post) 
+        
+        {
+            throw $this->createNotFoundException('Unable to find Blog post.');
+        }
         
         return $this->render('@App/Blog/singlePost.html.twig',[
-            'post' => $post
+            'post' => $post ,
             ]);
         
     }
@@ -101,6 +114,7 @@ class BlogController extends Controller
      */
     public function SlugAction($slug)
     {
+        
         $repo = $this->getDoctrine()->getRepository(Post::class);
         $post = $repo->findOneBy(['slug' => $slug]);
         
