@@ -101,7 +101,8 @@ class BlogController extends Controller
         if (!$post) 
         
         {
-            return $this->render('@App/Blog/error.html.twig');        }
+            return $this->render('@App/Blog/error.html.twig');       
+         }
         
         return $this->render('@App/Blog/singlePost.html.twig',[
             'post' => $post ,
