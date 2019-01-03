@@ -76,6 +76,17 @@ class CrudController extends Controller
 
              if($form->isSubmitted() && $form ->isValid()){
 
+                
+                  //Image
+                  $file = $post->getImage();
+                  $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                  $file->move(
+                      $this->getParameter('image_directory'),$fileName
+                  );
+
+                  $post->setImage($fileName);
+
                    
 
                    $manager->persist($post);
@@ -101,11 +112,18 @@ class CrudController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
+        $repo2 = $this->getDoctrine()->getRepository('AppBundle:Comment');
         $post = $repository->find($id);
+        $comments = $repo2 -> findBy( ['post' => $post ] );
+        foreach($comments as $comment)
+            {
+                $em->remove($comment);
+
+            }
         $em->remove($post);
         $em->flush();
         //$this ->get('session')->getFlashBag()->add('notice','Validation faite avec succes');
-        return $this->redirectToRoute('show_posts');
+        return $this->redirectToRoute('View_All_My_Posts');
     }
 
 

@@ -36,7 +36,7 @@ class Comment
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
-    protected $post;
+    protected $post_id;
 
 
     /**
@@ -91,7 +91,31 @@ class Comment
         return $this;
     }
 
- 
+
+
+        /**
+     * Get auteur
+     *
+     * @return string
+     */
+    public function getPost()
+    {
+        return $this->post_id;
+    }
+
+    /**
+     * Set post_id
+     *
+     * @param string $post_id
+     *
+     * @return Comment
+     */
+    public function setPost($post_id)
+    {
+        $this->post_id = $post_id;
+
+        return $this;
+    }
 
 
     /**
@@ -144,28 +168,4 @@ class Comment
     return $this->getContenu();
 }
 
-
-    /**
-     * Set postId
-     *
-     * @param \AppBundle\Entity\Post $postId
-     *
-     * @return Comment
-     */
-    public function setPost(\AppBundle\Entity\Post $post = null)
-    {
-        $this->post = $post;
-
-        return $this;
-    }
-
-    /**
-     * Get postId
-     *
-     * @return \AppBundle\Entity\Post
-     */
-    public function getPost()
-    {
-        return $this->post;
-    }
 }

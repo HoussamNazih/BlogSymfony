@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Form\PostType;
 use AppBundle\Form\CommentType;
+use Symfony\Component\HttpFoundation\Response;
+
 
 
 
@@ -27,34 +29,39 @@ class CommentController extends Controller
      * @Route("/newComment", name="new_comment")
      */
 
-    public function NewAction()
+    public function NewAction(Request $request)
+
     {
+        //$this->$container->setParameter('blogid', '1');
+
         $comment = new Comment();
-        //$form = $this->createFormBuilder($post)
-        $form = $this->createForm(CommentType::class , $comment);
-            /* ->add('Titre')
-             ->add('Contenu')
-             ->getForm(); */
+        $post = new Post();
 
-             if($form->isSubmitted() && $form ->isValid()){
+        $contenu = $request->query->get('contenu');
+        $blogid = $request->query->get('blogid');
+        $repo = $this->getDoctrine()->getRepository(Post::class);
+        $post = $repo->find($blogid);
 
-                   $user = $this->container->get('security.token_storage')->getToken()->getUser();
-                   $comment -> setAuteur($user);
-                   $comment -> setPost("1");
-                   $comment -> setPublished(new \DateTime());
-                   $manager = $this->getDoctrine()->getManager();
-                   $manager->persist($comment);
-                   $manager->flush();
-
-                   return $this->redirectToRoute('blog_show', ['id' => $comment->getId()]);
-
-                    
-             }
             
-            	
-        return $this->render('@App/Crud/new.html.twig',[
-            'formPost' => $form -> createView()
-       ]);
+
+            $manager = $this->getDoctrine()->getManager();
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            $comment -> setAuteur($user);
+            $comment -> setPost($post);
+            $comment -> setContenu($contenu);
+            $comment -> setPublished(new \DateTime());
+            $manager->persist($comment);
+            $manager->flush();
+
+            return $this->redirectToRoute('blogslug_show', ['slug' => $post->getSlug()]);
+
+             
+      
+
+
+
+
+
     }
 
 }

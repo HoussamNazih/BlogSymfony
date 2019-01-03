@@ -23,11 +23,13 @@ class BlogController extends Controller
      */
     public function indexAction(Request $request)
     {
-
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
 
         $repo = $this->getDoctrine()->getRepository(Post::class);
         $posts = $repo->findAll();
+        
+
 
         $paginator = $this->get('knp_paginator');
         $results = $paginator->paginate
@@ -117,23 +119,39 @@ class BlogController extends Controller
         
         $repo = $this->getDoctrine()->getRepository(Post::class);
         $post = $repo->findOneBy(['slug' => $slug]);
-        
+
         
         return $this->render('@App/Blog/singlePost.html.twig',[
-            'post' => $post
+            'post' => $post,
             ]);
         
     }
 
-    
-
     /**
-     * @Route("/blog", name="show_posts")
+     * @Route("/SearchedPosts" , name="View_SearchedPosts")
      */
-    public function showAction(Request $request)
+    public function searchedAction(Request $request)
     {
-        die("showAction");
+        $text = $request->query->get('text');
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
+
+            $repo2 = $this->getDoctrine()->getRepository(Post::class);
+            $query = $repo2->createQueryBuilder('p')
+                    ->where('p.titre LIKE :word')
+                    ->setParameter('word', '%'.$text.'%')
+                    ->getQuery();
+            $posts = $query->getResult();
+           
+
+            return $this->render('@App/Blog/search.html.twig',[
+                'posts' => $posts,
+                'user' =>  $user
+                ]);
         
+
+            
     }
+
+    
 }

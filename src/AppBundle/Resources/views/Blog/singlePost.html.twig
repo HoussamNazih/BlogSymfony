@@ -5,12 +5,9 @@
 <article>
 
 <!-- Page Content -->
-    <div class="container">
 
-      <div class="row">
 
         <!-- Post Content Column -->
-        <div class="col-lg-8">
 
           <!-- Title -->
           <h1 class="mt-4">{{ post.titre }}</h1>
@@ -40,22 +37,61 @@
           
 
 
-          <!-- Comments Form -->
+         <div class="card my-4">
+            <h5 class="card-header">Ajouter un commentaire</h5>
+            <div class="card-body">
+              <form action="/newComment">
+                <div class="form-group">
+                  <textarea name="contenu" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                  <input name="blogid" class="form-control" value ={{post.id}} type="hidden"  required="required" ></input>
+                </div>
+                <button type="submit" class="btn btn-primary">Commenter</button>
+              </form>
+            </div>
+          </div>
 
+  
 
 
         {# {{ render 'AppBundle:Comment:new' , { 'blog_id': blog.id } }} #}
 
-          {{ render (controller('AppBundle:Comment:new')) }}  
 
 
+ {% for comment in post.getComments() %}
+
+
+
+        <div class="col-sm-15">
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                  <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>{{comment.auteur}}</b></a>
+                        </div>
+              <h5 class="mt-0"></h5> <p>  <time datetime="{{ comment.published|date('c') }}">{{ comment.published|date('l, F j, Y') }}</time></p>
+                        <h6 class="text-muted time"></h6>
+                    </div>
+                </div> 
+              <div class="post-description"> 
+                    <p>{{comment.contenu}}</p>
+                   
+                </div>
+            </div>
         </div>
+        <br>
 
-      </div>
-      <!-- /.row -->
+            {% endfor %}
 
-    </div>
-    <!-- /.container -->
+
+
+<br>
+<br>
+<br>
 
 </article>
 
