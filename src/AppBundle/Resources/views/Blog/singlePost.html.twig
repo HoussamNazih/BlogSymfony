@@ -58,34 +58,23 @@
         {# {{ render 'AppBundle:Comment:new' , { 'blog_id': blog.id } }} #}
 
 
+        <!-- Single Comment -->
 
- {% for comment in post.getComments() %}
+         {% for comment in post.getComments() %}
 
-
-
-        <div class="col-sm-15">
-            <div class="panel panel-white post panel-shadow">
-                <div class="post-heading">
-                    <div class="pull-left image">
-                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
-                    </div>
-                  <div class="pull-left meta">
-                        <div class="title h5">
-                            <a href="#"><b>{{comment.auteur}}</b></a>
-                        </div>
-              <h5 class="mt-0"></h5> <p>  <time datetime="{{ comment.published|date('c') }}">{{ comment.published|date('l, F j, Y') }}</time></p>
-                        <h6 class="text-muted time"></h6>
-                    </div>
-                </div> 
-              <div class="post-description"> 
-                    <p>{{comment.contenu}}</p>
-                   
-                </div>
+          <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" src="http://bootdey.com/img/Content/user_1.jpg" alt="">
+            <div class="media-body">
+              <h5 class="mt-0"> <a href="#"><b>{{comment.auteur}}</b></a> </h5>
+              <p>  <time datetime="{{ comment.published|date('c') }}">{{ comment.published|date('l, F j, Y') }}</time></p>
+               {{comment.contenu}}
             </div>
-        </div>
-        <br>
+          </div>
+                      {% endfor %}
 
-            {% endfor %}
+
+
+
 
 
 
