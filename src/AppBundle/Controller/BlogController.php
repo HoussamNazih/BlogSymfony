@@ -153,5 +153,14 @@ class BlogController extends Controller
             
     }
 
+    public function pageNotFoundAction()
+    
+    {
+        return $this->render('@App/Blog/error.html.twig');       
+            
+    }
+
+
+
     
 }
