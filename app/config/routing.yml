@@ -5,9 +5,5 @@ app:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-pageNotFound:
-    pattern:  /{path}
-    defaults: { _controller: AppBundle:Blog:pageNotFound, path: '' }
-    requirements:
-        path: .*
+
 
