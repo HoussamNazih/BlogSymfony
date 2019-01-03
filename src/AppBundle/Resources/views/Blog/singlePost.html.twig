@@ -22,8 +22,7 @@
           <hr>
 
           <!-- Date/Time -->
-          <p>Posted on {{ post.published | date('H:i') }}</p>
-
+ <p>  <time datetime="{{ post.published|date('c') }}">{{ post.published|date('l, F j, Y') }}</time></p>
           <hr>
 
           <!-- Preview Image  --> 
