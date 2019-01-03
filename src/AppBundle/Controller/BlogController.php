@@ -101,8 +101,7 @@ class BlogController extends Controller
         if (!$post) 
         
         {
-            throw $this->createNotFoundException('Unable to find Blog post.');
-        }
+            return $this->render('@App/Blog/error.html.twig');        }
         
         return $this->render('@App/Blog/singlePost.html.twig',[
             'post' => $post ,
