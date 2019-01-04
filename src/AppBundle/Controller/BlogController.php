@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Comment;
-
+use Symfony\Component\Filesystem\Filesystem;
 use AppBundle\Entity\User;
 use AppBundle\Repository\PostRepository;
 use AppBundle\Repository\CommentRepository;
@@ -63,6 +63,8 @@ class BlogController extends Controller
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
         $posts = $repo->findBy( ['auteur' =>  strval ($user) ] );
         $paginator = $this->get('knp_paginator');
+        
+
         $results = $paginator->paginate
         (
               $posts,
@@ -96,6 +98,13 @@ class BlogController extends Controller
 
         $repo = $this->getDoctrine()->getRepository(Post::class);
         $post = $repo->find($id);
+
+        /* $fileSystem = new Filesystem();
+        $imgexist=$fileSystem->exists('/');
+        dump($imgexist);
+        exit();
+        */
+
 
 
         if (!$post) 
