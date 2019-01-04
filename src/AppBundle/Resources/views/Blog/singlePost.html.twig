@@ -35,6 +35,23 @@
                   <p>{{ post.contenu | raw}}</p>
 
           <hr>
+
+
+          {% for comment in post.getComments() %}
+
+          <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" src="http://bootdey.com/img/Content/user_1.jpg" alt="">
+            <div class="media-body">
+              <h5 class="mt-0"> <a href=""><b>{{comment.auteur}}</b></a> </h5>
+                                      <h6 class="text-muted time">
+
+              <p>  <time datetime="{{ comment.published|date('c') }}">{{ comment.published|date('l, F j, Y') }}</time></p>
+
+              </h6>
+               {{comment.contenu}}
+            </div>
+          </div>
+                      {% endfor %}
           
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
@@ -84,21 +101,7 @@
 
         <!-- Single Comment -->
 
-         {% for comment in post.getComments() %}
-
-          <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://bootdey.com/img/Content/user_1.jpg" alt="">
-            <div class="media-body">
-              <h5 class="mt-0"> <a href=""><b>{{comment.auteur}}</b></a> </h5>
-                                      <h6 class="text-muted time">
-
-              <p>  <time datetime="{{ comment.published|date('c') }}">{{ comment.published|date('l, F j, Y') }}</time></p>
-
-              </h6>
-               {{comment.contenu}}
-            </div>
-          </div>
-                      {% endfor %}
+         
 
 
 
