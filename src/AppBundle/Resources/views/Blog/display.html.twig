@@ -32,7 +32,7 @@
 				{{post.titre}}
 			</td>
 			<td>
-				10
+          {{ post.getComments()|length  }}
 			</td>
 			<td>
 				<a href="/post/{{ post.id }}" class="btn btn-info">View</a>

@@ -285,7 +285,11 @@ class Post
     public function removeComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments->removeElement($comment);
+
     }
+
+    
+
 
     /**
      * Get comments
