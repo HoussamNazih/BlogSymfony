@@ -120,6 +120,12 @@ class BlogController extends Controller
         $repo = $this->getDoctrine()->getRepository(Post::class);
         $post = $repo->findOneBy(['slug' => $slug]);
 
+        if (!$post) 
+        
+        {
+            return $this->render('@App/Blog/error.html.twig');       
+         }
+
         
         return $this->render('@App/Blog/singlePost.html.twig',[
             'post' => $post,
@@ -138,7 +144,7 @@ class BlogController extends Controller
 
             $repo2 = $this->getDoctrine()->getRepository(Post::class);
             $query = $repo2->createQueryBuilder('p')
-                    ->where('p.titre LIKE :word')
+                    ->where('Upper(p.titre) LIKE Upper(:word)')
                     ->setParameter('word', '%'.$text.'%')
                     ->getQuery();
             $posts = $query->getResult();

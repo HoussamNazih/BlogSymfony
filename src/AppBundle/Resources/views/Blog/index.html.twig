@@ -30,6 +30,19 @@
 
 <br>
 
+          {% if posts is empty %}
+          <br>
+          <br>
+
+          <p class="center" >
+          <div  class="alert alert-primary" role="alert">
+          Soyez le premier à publier un post 
+          </div>
+          </p>
+            {% else %}
+
+
+
 
           {% for post in posts %}
 
@@ -55,6 +68,7 @@
           <div class="navigation">
               {{ knp_pagination_render(posts) }}
           </div>
+          {% endif %}
 
 
           <!-- Pagination 

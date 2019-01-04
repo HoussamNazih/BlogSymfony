@@ -83,7 +83,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="auteur", type="string", length=255)
-     * @Assert\Length(max=255 , minMessage = "Le nom d'auteur est court mon ami!")
+     * @Assert\Length(max=255 , minMessage = "Le nom d'auteur est court ")
      * 
      */
     private $auteur;
@@ -94,8 +94,6 @@ class Post
      *
      * @ORM\Column(name="image", type="string", length=255)
      * @Assert\Image()
-     * @Assert\NotBlank(message="uploade an image plz")
-
      * 
      */
     private $image;

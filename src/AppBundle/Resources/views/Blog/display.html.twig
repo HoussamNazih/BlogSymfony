@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base1.html.twig' %}
 
 {% block crud %}
 
@@ -8,7 +8,14 @@
 
 	{% if posts is empty %}
 
-	<p> vous n'avez ecris any post </p>
+          <br>
+          <br>
+
+          <p class="center" >
+          <div  class="alert alert-primary" role="alert">
+         Vous n'avez aucun Poste ! <a href="/newPost" > Publier un poste </a>
+          </div>
+          </p>
 
     {% else %}
 

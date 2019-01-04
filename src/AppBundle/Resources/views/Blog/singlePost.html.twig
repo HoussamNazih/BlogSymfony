@@ -26,8 +26,9 @@
           <hr>
 
           <!-- Preview Image  --> 
+          {% if post.image != null %}
           <img class="img-fluid rounded" src="{{asset('uploads/images/' ~ post.image )}}">
-
+          {% endif %}
           <hr>
 
           <!-- Post Content -->
@@ -35,6 +36,8 @@
 
           <hr>
           
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
 
 
          <div class="card my-4">
@@ -51,6 +54,27 @@
               </form>
             </div>
           </div>
+
+       {% if post.getComments() is empty %}
+          <br>
+
+          <p class="center" >
+          <div  class="alert alert-primary" role="alert">
+          Soyez le premier à commenter 
+          </div>
+          </p>
+
+          {% endif %}
+
+            {% else %}
+
+            <div class="alert alert-danger" role="alert">
+   <a href="/login" class="alert-link"> Connectez vous </a> afin d'ajouter un Commentaire
+           </div>
+
+            {% endif %}
+
+
 
   
 

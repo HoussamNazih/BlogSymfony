@@ -72,7 +72,14 @@ class CrudController extends Controller
     {
       
              $form = $this->createForm(PostType::class , $post);
-             $form->handleRequest($request); 
+             $form->handleRequest($request);
+             
+             $user = $this->container->get('security.token_storage')->getToken()->getUser();
+             if ($post->getAuteur() != $user)
+             {
+                return $this->render('@App/Blog/forbidden.html.twig');
+             }
+
 
              if($form->isSubmitted() && $form ->isValid()){
 
@@ -114,6 +121,12 @@ class CrudController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
         $repo2 = $this->getDoctrine()->getRepository('AppBundle:Comment');
         $post = $repository->find($id);
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if ($post->getAuteur() != $user)
+        {
+           return $this->render('@App/Blog/forbidden.html.twig');
+        }
+
         $comments = $repo2 -> findBy( ['post' => $post ] );
         foreach($comments as $comment)
             {
