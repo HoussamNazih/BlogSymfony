@@ -49,7 +49,7 @@
 
           <!-- Blog Post -->
           <div class="card mb-5 col-md-14 ">
-          <img class="img-fluid rounded" style=" height: 200px ; width:100%" src="{{asset('uploads/images/' ~ post.image )}}" onerror="this.onerror=null;this.src='https://cdn.cia-france.com/blog/img/blog-cia-france-home.jpg';" >
+          <img class="img-fluid rounded" style=" height: 200px ; width:100%" src="{{asset('uploads/images/' ~ post.image )}}" onerror="this.onerror=null;this.src='https://picsum.photos/200?random';" >
             <div class="card-body">
               <h2 class="card-title">{{ post.titre }}</h2>
             <p class="is-small">{{ post.contenu|striptags|convert_encoding('UTF-8', 'HTML-ENTITIES')|length > 255 ? post.contenu|striptags|convert_encoding('UTF-8', 'HTML-ENTITIES')|slice(0, 255) ~ '...' : post.contenu|striptags|convert_encoding('UTF-8', 'HTML-ENTITIES')  }}</p>
